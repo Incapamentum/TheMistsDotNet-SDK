@@ -23,6 +23,9 @@ namespace TheMists.Sdk.Models.Commerce
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
+        [JsonPropertyName("whitelisted")]
+        public Boolean Whitelisted { get; set; }
+
         [JsonPropertyName("buys")]
         public required PriceEntry Buys { get; set; }
 
