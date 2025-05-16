@@ -12,16 +12,25 @@ namespace TheMists.Sdk.Api
 {
     public class CommerceClient : ApiClient
     {
-        public async Task<Prices?> GetPrices(string id)
+        const string baseEndpoint = "commerce/prices";
+
+        public async Task<List<int>?> GetAllPriceItemIdsAsync()
         {
-            string endpoint = "commerce/prices/" + id;
+            return await GetAsync<List<int>>(baseEndpoint);
+        }
 
-            HttpResponseMessage response = await _httpClient.GetAsync(endpoint);
-            response.EnsureSuccessStatusCode();
+        public async Task<Prices?> GetItemBuySellAsync(int id)
+        {
+            string endpoint = baseEndpoint + $"/{id}";
 
-            string json = await response.Content.ReadAsStringAsync();
+            return await GetAsync<Prices>(endpoint);
+        }
 
-            return JsonSerializer.Deserialize<Prices>(json);
+        public async Task<List<Prices?>> GetItemsBuySellAsync(List<int> ids)
+        {
+            string endpoint = baseEndpoint + "?ids=" + string.Join(",", ids);
+
+            return await GetAsync<List<Prices>>(endpoint);
         }
     }
 }
