@@ -26,7 +26,7 @@ namespace TheMists.Sdk.Api
             return await GetAsync<Prices>(endpoint);
         }
 
-        public async Task<List<Prices?>> GetItemsBuySellAsync(List<int> ids)
+        public async Task<List<Prices>?> GetItemsBuySellAsync(List<int> ids)
         {
             string endpoint = baseEndpoint + "?ids=" + string.Join(",", ids);
 

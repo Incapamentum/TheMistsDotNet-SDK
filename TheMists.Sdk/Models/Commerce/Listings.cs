@@ -27,9 +27,9 @@ namespace TheMists.Sdk.Models.Commerce
         public int ItemId { get; set; }
 
         [JsonPropertyName("buys")]
-        public List<Listing> Buys { get; set; }
+        public required List<Listing> Buys { get; set; }
 
         [JsonPropertyName("sells")]
-        public List<Listing> Sells { get; set; }
+        public required List<Listing> Sells { get; set; }
     }
 }
