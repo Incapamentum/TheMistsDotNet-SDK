@@ -12,30 +12,32 @@ namespace TheMists.Sdk.Api
 {
     public class CommerceClient : ApiClient
     {
-        const string baseEndpoint = "commerce/prices";
+        const string baseEndpoint = "commerce/";
+        const string priceEndpoint = baseEndpoint + "prices";
+        const string listingEndpoint = baseEndpoint + "listings";
 
         public async Task<List<int>?> GetAllPriceItemIdsAsync()
         {
-            return await GetAsync<List<int>>(baseEndpoint);
+            return await GetAsync<List<int>>(priceEndpoint);
         }
 
         public async Task<Prices?> GetItemBuySellAsync(int id)
         {
-            string endpoint = baseEndpoint + $"/{id}";
+            string endpoint = priceEndpoint + $"/{id}";
 
             return await GetAsync<Prices>(endpoint);
         }
 
         public async Task<List<Prices>?> GetItemsBuySellAsync(List<int> ids)
         {
-            string endpoint = baseEndpoint + "?ids=" + string.Join(",", ids);
+            string endpoint = priceEndpoint + "?ids=" + string.Join(",", ids);
 
             return await GetAsync<List<Prices>>(endpoint);
         }
 
         public async Task<List<int>?> GetAllListingItemIdsAsync()
         {
-            return await GetAsync<List<int>>(baseEndpoint);
+            return await GetAsync<List<int>>(listingEndpoint);
         }
 
         public async Task<Listing?> GetItemListingAsync(int id)
