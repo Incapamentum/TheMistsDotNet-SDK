@@ -6,7 +6,6 @@
 // without prior written permission from the author.
 
 using System;
-//using System.Net.Http;
 using System.Text.Json;
 using TheMists.Sdk.Models.Commerce;
 using TheMists.Sdk.Api;
