@@ -21,14 +21,14 @@ namespace TheMists.Sdk.Api
             return await GetAsync<List<int>>(priceEndpoint);
         }
 
-        public async Task<Prices?> GetItemBuySellAsync(int id)
+        public async Task<Prices?> GetItemPriceAsync(int id)
         {
             string endpoint = priceEndpoint + $"/{id}";
 
             return await GetAsync<Prices>(endpoint);
         }
 
-        public async Task<List<Prices>?> GetItemsBuySellAsync(List<int> ids)
+        public async Task<List<Prices>?> GetItemsPricesAsync(List<int> ids)
         {
             string endpoint = priceEndpoint + "?ids=" + string.Join(",", ids);
 
