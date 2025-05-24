@@ -7,9 +7,9 @@
 
 using System.Text.Json;
 
-namespace TheMists.Sdk.Api
+namespace TheMists.Sdk.Core
 {
-    public class ApiClient
+    internal class ApiClient
     {
         protected static readonly HttpClient _httpClient;
 

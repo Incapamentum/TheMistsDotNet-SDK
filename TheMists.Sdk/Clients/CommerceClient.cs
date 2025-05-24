@@ -10,7 +10,7 @@ using TheMists.Sdk.Models.Commerce;
 
 namespace TheMists.Sdk.Api
 {
-    public class CommerceClient : ApiClient
+    internal class CommerceClient : ApiClient
     {
         const string baseEndpoint = "commerce/";
         const string priceEndpoint = baseEndpoint + "prices";
