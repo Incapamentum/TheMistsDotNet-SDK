@@ -6,11 +6,14 @@
 // without prior written permission from the author.
 
 using System.Text.Json;
+
+using TheMists.Sdk.Core;
+using TheMists.Sdk.Interfaces;
 using TheMists.Sdk.Models.Commerce;
 
-namespace TheMists.Sdk.Api
+namespace TheMists.Sdk.Clients
 {
-    internal class CommerceClient : ApiClient
+    internal class CommerceClient : ApiClient, ICommerceApi
     {
         const string baseEndpoint = "commerce/";
         const string priceEndpoint = baseEndpoint + "prices";
