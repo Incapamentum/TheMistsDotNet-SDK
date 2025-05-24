@@ -5,16 +5,14 @@
 // Additional restriction: This software may not be used for commercial purposes
 // without prior written permission from the author.
 
-using System;
-using System.Text.Json;
-using TheMists.Sdk.Models.Commerce;
-using TheMists.Sdk.Api;
+using TheMists.Sdk.Clients;
+using TheMists.Sdk.Interfaces;
 
 namespace TheMists.Sdk.MistsGate
 {
     public class MistsGate
     {
-        public CommerceClient Commerce { get; }
+        public ICommerceApi Commerce { get; }
 
         public MistsGate()
         {
