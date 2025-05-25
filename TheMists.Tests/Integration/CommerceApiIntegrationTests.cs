@@ -8,18 +8,35 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using NLog;
 using Xunit;
 
-using TheMists.Sdk.Api;
+using TheMists.Sdk.MistsGate;
 using TheMists.Sdk.Models.Commerce;
 
 public class CommerceApiIntegrationTests
 {
-    private readonly CommerceClient _client;
+    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+    private readonly MistsGate _client;
+
+    // Keeps track of the total number of items
+    const int TOTAL_ITEM_COUNT = 27766;
 
     public CommerceApiIntegrationTests()
     {
-        _client = new CommerceClient();
+        _client = new MistsGate();
+    }
+
+    [Fact]
+    public async Task GetAllPriceItemIdsAsync_ReturnsValidResponse()
+    {
+        List<int> result = await _client.Commerce.GetAllPriceItemIdsAsync();
+
+        logger.Info($"Total number of items: {result.Count}");
+
+        Assert.NotNull(result);
+        Assert.Equal(TOTAL_ITEM_COUNT, result.Count);
     }
 
     [Fact]
@@ -27,7 +44,7 @@ public class CommerceApiIntegrationTests
     {
         int testItemId = 19721;
 
-        Prices result = await _client.GetItemPriceAsync(testItemId);
+        Prices result = await _client.Commerce.GetItemPriceAsync(testItemId);
 
         Assert.NotNull(result);
         Assert.Equal(testItemId, result.Id);
