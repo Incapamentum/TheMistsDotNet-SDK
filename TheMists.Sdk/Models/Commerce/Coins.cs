@@ -22,8 +22,8 @@ namespace TheMists.Sdk.Models.Commerce
         }
 
         public Coins(int gold, int silver, int copper)
+            : this(FromGoldSilverCopper(gold, silver, copper))
         {
-            TotalCopper = (gold * CopperInGold) + (silver * CopperInSilver) + copper; 
         }
 
         public int Gold => TotalCopper / CopperInGold;
@@ -50,7 +50,12 @@ namespace TheMists.Sdk.Models.Commerce
         public override bool Equals(object obj) => obj is Coins other && Equals(other);
         public override int GetHashCode() => TotalCopper.GetHashCode();
 
+        // Simple comparisons
         public static bool operator ==(Coins left, Coins right) => left.Equals(right);
         public static bool operator !=(Coins left, Coins right) => !left.Equals(right);
+
+        // Arithmetic
+        public static Coins operator +(Coins a, Coins b) => new Coins(a.TotalCopper + b.TotalCopper);
+        public static Coins operator -(Coins a, Coins b) => new Coins(a.TotalCopper - b.TotalCopper);
     }
 }
