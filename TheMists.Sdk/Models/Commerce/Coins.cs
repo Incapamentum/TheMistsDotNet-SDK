@@ -21,6 +21,11 @@ namespace TheMists.Sdk.Models.Commerce
             TotalCopper = totalCopper;
         }
 
+        public Coins(int gold, int silver, int copper)
+        {
+            TotalCopper = (gold * CopperInGold) + (silver * CopperInSilver) + copper; 
+        }
+
         public int Gold => TotalCopper / CopperInGold;
         public int Silver => (TotalCopper % CopperInGold) / CopperInSilver;
         public int Copper => TotalCopper % CopperInSilver;
