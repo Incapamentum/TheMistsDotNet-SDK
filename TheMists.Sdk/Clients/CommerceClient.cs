@@ -5,6 +5,7 @@
 // Additional restriction: This software may not be used for commercial purposes
 // without prior written permission from the author.
 
+using System.Runtime.InteropServices.Marshalling;
 using System.Text.Json;
 
 using TheMists.Sdk.Core;
@@ -18,6 +19,7 @@ namespace TheMists.Sdk.Clients
         const string baseEndpoint = "commerce/";
         const string priceEndpoint = baseEndpoint + "prices";
         const string listingEndpoint = baseEndpoint + "listings";
+        const string exchangeEndpoint = baseEndpoint + "exchange";
 
         public async Task<List<int>?> GetAllPriceItemIdsAsync()
         {
@@ -57,6 +59,19 @@ namespace TheMists.Sdk.Clients
             return await GetAsync<List<Listing>>(endpoint);
         }
 
+        // Quantity is the copper amount
+        public async Task<ExchangeRate?> GetCoinsToGemsRate(Coins c)
+        {
+            string endpoint = exchangeEndpoint + $"coins?quantity={c.TotalCopper}";
 
+            return await GetAsync<ExchangeRate>(endpoint);
+        }
+
+        public async Task<ExchangeRate?> GetGemsToCoinsRate(int quantity_gems)
+        {
+            string endpoint = exchangeEndpoint + $"gems?quantity={quantity_gems}";
+
+            return await GetAsync<ExchangeRate>(endpoint);
+        }
     }
 }

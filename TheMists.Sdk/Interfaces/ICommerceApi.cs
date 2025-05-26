@@ -17,7 +17,7 @@ namespace TheMists.Sdk.Interfaces
         Task<List<int>?> GetAllListingItemIdsAsync();
         Task<Listing?> GetItemListingAsync(int id);
         Task<List<Listing>?> GetItemsListingAsync(List<int> ids);
-        Task<ExchangeRate?> GetCoinsToGemsRate(int quantity);
-        Task<ExchangeRate?> GetGemsToCoinsRate(int quantity);
+        Task<ExchangeRate?> GetCoinsToGemsRate(Coins c);
+        Task<ExchangeRate?> GetGemsToCoinsRate(int quantity_gems);
     }
 }
