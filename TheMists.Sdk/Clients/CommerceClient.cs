@@ -62,14 +62,14 @@ namespace TheMists.Sdk.Clients
         // Quantity is the copper amount
         public async Task<ExchangeRate?> GetCoinsToGemsRate(Coins c)
         {
-            string endpoint = exchangeEndpoint + $"coins?quantity={c.TotalCopper}";
+            string endpoint = exchangeEndpoint + $"/coins?quantity={c.TotalCopper}";
 
             return await GetAsync<ExchangeRate>(endpoint);
         }
 
         public async Task<ExchangeRate?> GetGemsToCoinsRate(int quantity_gems)
         {
-            string endpoint = exchangeEndpoint + $"gems?quantity={quantity_gems}";
+            string endpoint = exchangeEndpoint + $"/gems?quantity={quantity_gems}";
 
             return await GetAsync<ExchangeRate>(endpoint);
         }
