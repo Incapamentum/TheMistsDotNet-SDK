@@ -24,7 +24,17 @@ namespace TheMists.Sdk.Core
         protected static async Task<T?> GetAsync<T>(string endpoint)
         {
             HttpResponseMessage response = await _httpClient.GetAsync(endpoint);
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                string body = await response.Content.ReadAsStringAsync();
+
+                throw new ApiException(
+                    $"API call to '{endpoint}' failed with {(int)response.StatusCode} {response.ReasonPhrase}: {body}",
+                    response.StatusCode,
+                    body
+                );
+            }
 
             string json = await response.Content.ReadAsStringAsync();
 
