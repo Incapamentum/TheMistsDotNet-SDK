@@ -17,7 +17,7 @@ public class CommerceApiIntegrationTests : BaseTester
     private readonly MistsGate _client;
 
     // Keeps track of the total number of items
-    const int TOTAL_ITEM_COUNT = 27766;
+    const int TOTAL_ITEM_COUNT = 27813;
 
     public CommerceApiIntegrationTests()
     {
@@ -60,5 +60,17 @@ public class CommerceApiIntegrationTests : BaseTester
         Assert.True(result.Sells.UnitPrice >= 0);
 
         logger.Info("Completed.");
+    }
+
+    [Fact]
+    public async Task GetItemsPricesAsync_ReturnValidResponse()
+    {
+        logger.Info("Executing test GetItemsPricesAsync_ReturnValidResponse...");
+
+        List<int> testItemIds = new List<int> { 510, 2322, 12199 };
+
+        List<Prices> result = await _client.Commerce.GetItemsPricesAsync(testItemIds);
+
+        Assert.NotNull(result);
     }
 }
