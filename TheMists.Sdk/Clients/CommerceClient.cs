@@ -47,14 +47,14 @@ namespace TheMists.Sdk.Clients
 
         public async Task<Listing?> GetItemListingAsync(int id)
         {
-            string endpoint = baseEndpoint + $"/{id}";
+            string endpoint = listingEndpoint + $"/{id}";
 
             return await GetAsync<Listing>(endpoint);
         }
 
         public async Task<List<Listing>?> GetItemsListingAsync(List<int> ids)
         {
-            string endpoint = baseEndpoint + "?ids=" + string.Join(",", ids);
+            string endpoint = listingEndpoint + "?ids=" + string.Join(",", ids);
 
             return await GetAsync<List<Listing>>(endpoint);
         }
